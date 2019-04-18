@@ -31,15 +31,16 @@ public class OrderEntity {
     @GeneratedValue
     private Long orderId;
     private Date orderDate;
-    @ManyToOne
+    @ManyToOne //each order corresponds to one user but each user can have several orders
     private UserEntity user;
     @ManyToMany
     @JoinTable(name = "es_order_item")
     private Set<ItemEntity> orderedItems;
     @ManyToOne
-    @JoinColumn(name = "", foreignKey = @ForeignKey(name = ""))
+    @JoinColumn(name = "", foreignKey = @ForeignKey(name = ""))//???
     private UserAddressEntity shippingAddress;
     @JoinTable(name = "es_order_status")
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+    private Long orderPrice;
 }

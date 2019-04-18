@@ -24,7 +24,7 @@ public class ItemEntity {
     @GeneratedValue
     private Long itemId;
     private String name;
-    @ElementCollection
+    @ElementCollection//???
     @JoinTable(name = "es_item_available_colours")
     @Enumerated(EnumType.STRING)
     private Set<Colour> availableColours;

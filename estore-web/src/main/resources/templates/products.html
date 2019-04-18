@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<div id="includedContent"></div>
+<tr th:each="item: ${itemList}">
+    <td th:text="${item.getItemId()}" />
+    <td th:text="${item.getName()}" />
+    <td th:text="${item.getPrice()}" />
+</tr>
+</body>
+</html>
