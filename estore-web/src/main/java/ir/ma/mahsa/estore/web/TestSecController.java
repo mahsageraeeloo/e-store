@@ -24,23 +24,25 @@ import java.util.Map;
 @Controller
 public class TestSecController {
 
-    final IItemBusiness iItemBusiness;
+//    final IItemBusiness iItemBusiness;
+//
+//    public TestSecController(final IItemBusiness iItemBusiness) {
+//        this.iItemBusiness = iItemBusiness;
+//    }
 
-    public TestSecController(final IItemBusiness iItemBusiness) {
-        this.iItemBusiness = iItemBusiness;
-    }
-
-    @GetMapping(value = "/hi")
+    @GetMapping(value = "/home")
     public String getCurrentUser(Model model) {
 //        UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        model.addAttribute("name", principal.getUsername());
-        return "greeting";
+        return "home";
     }
 
-    @GetMapping("/products")
-    public String getProducts(Model model) {
-        List<ItemEntity> itemEntityList = iItemBusiness.getItems();
-        model.addAttribute("itemList", itemEntityList);
-        return "products";
+    @GetMapping(value = "/sakineh")
+    public String generateHeader(Model model) {
+        UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("name", principal.getUsername());
+        return "header";
     }
+
+
 }
