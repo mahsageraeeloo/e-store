@@ -4,9 +4,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-public abstract class AbstractHeaderController {
+public interface IHeaderController {
     @ModelAttribute("username")
-    public String generateHeader(){
+    default String generateHeader(){
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return principal.getUsername();
     }
