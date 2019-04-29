@@ -12,5 +12,25 @@ import javax.servlet.http.HttpSession;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, value = WebApplicationContext.SCOPE_SESSION)
 public class ShoppingCart {
     private OrderEntity currentOrder;
+    private int counter = 2;
 
+    public ShoppingCart() {
+        counter++;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public OrderEntity getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(OrderEntity currentOrder) {
+        this.currentOrder = currentOrder;
+    }
 }
