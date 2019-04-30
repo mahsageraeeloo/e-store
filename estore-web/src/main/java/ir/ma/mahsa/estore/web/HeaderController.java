@@ -23,8 +23,8 @@ public class HeaderController {
         model.addAttribute("username", principal.getUsername());
 
         /* Adding shopping cart information*/
-        model.addAttribute("orderedItemsNo", shoppingCart.getCurrentOrder().getOrderedItems().size());
-        model.addAttribute("orderPrice", shoppingCart.getCurrentOrder().getOrderPrice());
-        model.addAttribute("cartId", shoppingCart.getCounter());
+//        model.addAttribute("orderedItemsNo", shoppingCart.getCurrentOrder().getOrderedItems().size());
+//        model.addAttribute("orderPrice", shoppingCart.getCurrentOrder().getOrderPrice());
+//        model.addAttribute("cartId", shoppingCart.getCounter());
     }
 }
