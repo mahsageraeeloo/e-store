@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerHTML">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="headerHTML(pageTitle)">
+    <!--<head th:fragment="headerHTML(pageTitle, scripts)">-->
+    <title th:text="${pageTitle}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--    <script th:src="${scripts}"></script>-->
 </head>
 <body>
 <div th:fragment="headerDiv">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">products</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/products">products</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="#"><span class="glyphicon glyphicon-user"
+                                      th:text="${#authentication.getName()}"></span></a></li>
+                <li th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a href="#"><span class="glyphicon glyphicon-user">Sign up</span></a></li>
+                <li th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
             </ul>
         </div>
     </nav>
-    <p th:text="'Hello, ' + ${username} + '!'"/>
-    <p th:text="'CartId=>' + ${cartId}"/>
 </div>
 </body>
 </html>

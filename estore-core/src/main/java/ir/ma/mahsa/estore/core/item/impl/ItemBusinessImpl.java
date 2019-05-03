@@ -1,5 +1,6 @@
 package ir.ma.mahsa.estore.core.item.impl;
 
+import ir.ma.mahsa.estore.core.item.Colour;
 import ir.ma.mahsa.estore.core.item.IItemBusiness;
 import ir.ma.mahsa.estore.core.item.IItemDao;
 import ir.ma.mahsa.estore.core.item.ItemEntity;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Amir
@@ -26,10 +29,19 @@ public class ItemBusinessImpl implements IItemBusiness {
         ItemEntity item = new ItemEntity();
         item.setName("sofa");
         item.setPrice(1000L);
+        HashSet<Colour> s = new HashSet<>();
+        s.add(Colour.RED);
+        s.add(Colour.BLUE);
+        s.add(Colour.WHITE);
+        item.setAvailableColours(s);
         persistItem(item);
         ItemEntity item2 = new ItemEntity();
         item2.setName("sofa2");
         item2.setPrice(2000L);
+        s.remove(Colour.RED);
+        s.remove(Colour.BLUE);
+        s.add(Colour.YELLOW);
+        item2.setAvailableColours(s);
         persistItem(item2);
     }
 

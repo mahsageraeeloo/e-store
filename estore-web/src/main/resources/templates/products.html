@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<head th:replace="fragments/generalFragments.html :: headerHTML(pageTitle = 'Products')">
 </head>
 <body>
-<div id="includedContent"></div>
-<a th:href="@{http://www.thymeleaf.com/documentation.html}">anjkjnk</a>
-<!--<p th:text="'Hello, ' + ${username} + '!'" />-->
 <div th:insert="fragments/generalFragments.html :: headerDiv"></div>
-
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="http://www.thymeleaf.com/documentation.html">Active</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="http://www.thymeleaf.com/documentation.html">Link</a>
-    </li>
-</ul>
-
-
 <tr th:each="item: ${itemList}">
     <td th:text="${item.getItemId()}" />
     <td th:text="${item.getName()}" />
     <td th:text="${item.getPrice()}" />
 </tr>
+
+<table class="table table-striped table-responsive-md btn-table">
+
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Product name</th>
+        <th>Product price</th>
+        <th>Available colours</th>
+        <th> </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="item: ${itemList}">
+        <th scope="row">1</th>
+<!--        <td th:text="${item.getItemId()}" />-->
+        <td th:text="${item.getName()}" />
+        <td th:text="${item.getPrice()}" />
+        <td th:text="${item.getAvailableColours()}" />
+        <td>
+            <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Buy</button>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
 </body>
 </html>
